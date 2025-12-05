@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Offset for fixed header */
+}
+
+body {
+  background: #000000;
+  color: #e5e7eb;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #dc2626, #991b1b);
+  border-radius: 6px;
+  border: 2px solid #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ef4444, #dc2626);
+}
+
+/* Selection styles */
+::selection {
+  background-color: rgba(220, 38, 38, 0.3);
+  color: #ffffff;
+}
+
+/* Smooth transitions for buttons and links */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Better focus styles */
+button:focus-visible, a:focus-visible {
+  outline: 2px solid #dc2626;
+  outline-offset: 2px;
+}
+
+/* Container utilities */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid #dc2626;
+  outline-offset: 2px;
+}
