@@ -15,14 +15,14 @@ export async function POST(request: Request) {
       );
     }
 
-    // Create transporter using SMTP
+    // Create transporter using Gmail SMTP
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
@@ -60,8 +60,8 @@ Sent from Full House Contact Form
 
     // Send email
     await transporter.sendMail({
-      from: `"Full House Contact Form" <${process.env.SMTP_FROM || process.env.SMTP_USER}>`,
-      to: SITE_CONFIG.email,
+      from: `"Full House Contact Form" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_TO || SITE_CONFIG.email,
       subject: `New Contact Form: ${name} - ${service || 'General Inquiry'}`,
       text: textContent,
       html: htmlContent,

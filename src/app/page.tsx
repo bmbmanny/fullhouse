@@ -84,6 +84,27 @@ export default function HomePage() {
                 </svg>
                 Call Now
               </motion.a>
+              <motion.a
+                href={`sms:${SITE_CONFIG.phone}`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center justify-center px-8 py-3.5 text-lg font-semibold border-2 border-red-500 text-red-500 rounded-lg hover:bg-red-500 hover:text-white transition-all duration-200"
+              >
+                <svg
+                  className="w-6 h-6 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                  />
+                </svg>
+                Text Us
+              </motion.a>
             </motion.div>
           </motion.div>
         </div>
@@ -293,12 +314,20 @@ export default function HomePage() {
                 Get Free Quote
               </motion.button>
               <motion.a
-                href={`mailto:${SITE_CONFIG.email}?subject=Contact Request`}
+                href={`tel:${SITE_CONFIG.phone}`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold border-2 border-white text-white rounded-lg hover:bg-white hover:text-red-600 transition-all duration-200"
               >
-                Contact Us
+                Call Us
+              </motion.a>
+              <motion.a
+                href={`sms:${SITE_CONFIG.phone}`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold border-2 border-white text-white rounded-lg hover:bg-white hover:text-red-600 transition-all duration-200"
+              >
+                Text Us
               </motion.a>
             </motion.div>
           </motion.div>

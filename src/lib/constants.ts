@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
     "Professional moving and junk removal services you can trust. We handle residential and commercial moves, furniture disposal, and specialty removals with care.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://fullhousedelivery.com",
   phone: "(786) 682-4048",
-  email: "info@fullhousedelivery.com",
+  email: "contact@fullhousedelivery.com",
   address: {
     street: "123 Main Street",
     city: "Your City",

@@ -101,10 +101,11 @@ export default function Header() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-4">
             <a
               href={`tel:${SITE_CONFIG.phone}`}
               className="text-red-500 font-semibold hover:text-red-400 transition-colors flex items-center gap-2"
+              title="Call us"
             >
               <svg
                 className="w-4 h-4"
@@ -120,6 +121,26 @@ export default function Header() {
                 />
               </svg>
               <span className="hidden lg:inline">{SITE_CONFIG.phone}</span>
+            </a>
+            <a
+              href={`sms:${SITE_CONFIG.phone}`}
+              className="text-red-500 font-semibold hover:text-red-400 transition-colors flex items-center gap-2"
+              title="Text us"
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                />
+              </svg>
+              <span className="hidden lg:inline">Text</span>
             </a>
             <button
               onClick={() => setQuoteDialogOpen(true)}
@@ -244,12 +265,20 @@ export default function Header() {
                 </Link>
               );
             })}
-            <a
-              href={`tel:${SITE_CONFIG.phone}`}
-              className="text-red-500 font-semibold"
-            >
-              {SITE_CONFIG.phone}
-            </a>
+            <div className="flex gap-3">
+              <a
+                href={`tel:${SITE_CONFIG.phone}`}
+                className="flex-1 text-center text-red-500 font-semibold border-2 border-red-500 px-4 py-2.5 rounded-lg hover:bg-red-500 hover:text-white transition-colors"
+              >
+                Call
+              </a>
+              <a
+                href={`sms:${SITE_CONFIG.phone}`}
+                className="flex-1 text-center text-red-500 font-semibold border-2 border-red-500 px-4 py-2.5 rounded-lg hover:bg-red-500 hover:text-white transition-colors"
+              >
+                Text
+              </a>
+            </div>
             <button
               onClick={() => {
                 setQuoteDialogOpen(true);
