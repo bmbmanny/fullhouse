@@ -1,39 +1,23 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import ServiceCard from '@/components/ui/ServiceCard';
+import TestimonialCard from '@/components/ui/TestimonialCard';
 import QuoteDialog from '@/components/ui/QuoteDialog';
-import GoogleReviews from '@/components/GoogleReviews';
-import GooglePhotosGallery from '@/components/GooglePhotosGallery';
 import { services } from '@/data/services';
+import { testimonials } from '@/data/testimonials';
 import { SITE_CONFIG } from '@/lib/constants';
-import { GoogleBusinessProfile } from '@/types/google';
 import { fadeInUp, staggerContainer, heroAnimation } from '@/lib/animations';
 
 export default function HomePage() {
   const [quoteDialogOpen, setQuoteDialogOpen] = useState(false);
-  const [googleData, setGoogleData] = useState<GoogleBusinessProfile | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Fetch Google Business data
-    fetch('/api/google-business')
-      .then((res) => res.json())
-      .then((data) => {
-        setGoogleData(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching Google Business data:', error);
-        setLoading(false);
-      });
-  }, []);
 
   return (
     <div>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-black via-gray-900 to-red-950 text-white pt-40 pb-24 md:pt-56 md:pb-40 overflow-hidden">
+        {/* Animated background patterns */}
         <motion.div
           animate={{
             scale: [1, 1.1, 1],
@@ -250,22 +234,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Google Reviews Section */}
-      {!loading && googleData && googleData.reviews.length > 0 && (
-        <GoogleReviews
-          reviews={googleData.reviews}
-          rating={googleData.rating}
-          totalReviews={googleData.totalReviews}
-        />
-      )}
+      {/* Testimonials Section */}
+      <section className="py-20 md:py-32 bg-gray-950">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={fadeInUp}
+            className="text-center mb-20"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              What Our Customers Say
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+              Don&apos;t just take our word for it. See what our satisfied
+              customers have to say.
+            </p>
+          </motion.div>
 
-      {/* Google Photos Section */}
-      {!loading && googleData && googleData.photos.length > 0 && (
-        <GooglePhotosGallery photos={googleData.photos} />
-      )}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto"
+          >
+            {testimonials.map((testimonial) => (
+              <motion.div key={testimonial.id} variants={fadeInUp}>
+                <TestimonialCard testimonial={testimonial} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="relative py-24 md:py-40 bg-gradient-to-br from-red-900 via-red-800 to-black text-white overflow-hidden">
+        {/* Animated background */}
         <motion.div
           animate={{
             scale: [1, 1.2, 1],
