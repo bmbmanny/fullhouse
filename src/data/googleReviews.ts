@@ -2,7 +2,7 @@ import { GoogleBusinessProfile } from '@/types/google';
 
 // This is a placeholder - you can manually add reviews here or fetch from API
 export const googleBusinessData: GoogleBusinessProfile = {
-  name: 'Full House Moving & Junk Removal',
+  name: 'Fullhouse Delivery',
   rating: 4.9,
   totalReviews: 127,
   reviews: [

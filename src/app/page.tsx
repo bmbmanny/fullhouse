@@ -18,9 +18,11 @@ export default function HomePage() {
 
   useEffect(() => {
     // Fetch Google Business data
+    console.log('Fetching Google Business data...');
     fetch('/api/google-business')
       .then((res) => res.json())
       .then((data) => {
+        console.log('Google Business data received:', data);
         setGoogleData(data);
         setLoading(false);
       })
@@ -251,16 +253,28 @@ export default function HomePage() {
       </section>
 
       {/* Google Reviews Section */}
-      {!loading && googleData && googleData.reviews.length > 0 && (
+      {loading ? (
+        <section className="py-20 bg-gray-950">
+          <div className="container mx-auto px-4 text-center">
+            <p className="text-white text-xl">Loading Google Reviews...</p>
+          </div>
+        </section>
+      ) : googleData && googleData.reviews.length > 0 ? (
         <GoogleReviews
           reviews={googleData.reviews}
           rating={googleData.rating}
           totalReviews={googleData.totalReviews}
         />
+      ) : (
+        <GoogleReviews
+          reviews={googleData?.reviews || []}
+          rating={googleData?.rating || 4.9}
+          totalReviews={googleData?.totalReviews || 0}
+        />
       )}
 
       {/* Google Photos Section */}
-      {!loading && googleData && googleData.photos.length > 0 && (
+      {googleData && googleData.photos.length > 0 && (
         <GooglePhotosGallery photos={googleData.photos} />
       )}
 

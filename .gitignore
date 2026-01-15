@@ -46,3 +46,6 @@ next-env.d.ts
 screenshots/
 .claude/
 config.ts
+
+# server-side cache
+.cache/

@@ -35,8 +35,14 @@ export async function scrapeGoogleBusiness(placeUrl: string): Promise<GoogleBusi
 
     // Fallback: Parse HTML directly
     const nameMatch = html.match(/<meta property="og:title" content="([^"]+)"/);
-    const ratingMatch = html.match(/aria-label="([0-9.]+) stars"/i);
-    const reviewCountMatch = html.match(/([0-9,]+)\s+reviews?/i);
+    const ratingMatch = html.match(/aria-label="([0-9.]+) stars"/i) || html.match(/([0-9]\.[0-9])\s*★/);
+
+    // Try multiple patterns for review count
+    const reviewCountMatch =
+      html.match(/([0-9,]+)\s+reviews?/i) ||
+      html.match(/\(([0-9,]+)\)/i) ||
+      html.match(/"reviewCount":([0-9]+)/i) ||
+      html.match(/data-review-count="([0-9,]+)"/i);
 
     // Extract photos from meta tags and page content
     const photoMatches = Array.from(html.matchAll(/https:\/\/lh[0-9]+\.googleusercontent\.com\/[^"'\s]+/g));
@@ -71,7 +77,7 @@ export async function scrapeGoogleBusiness(placeUrl: string): Promise<GoogleBusi
     }
 
     const businessProfile: GoogleBusinessProfile = {
-      name: nameMatch ? nameMatch[1] : 'Full House Moving & Junk Removal',
+      name: nameMatch ? nameMatch[1] : 'Fullhouse Delivery',
       rating: ratingMatch ? parseFloat(ratingMatch[1]) : 4.9,
       totalReviews: reviewCountMatch ? parseInt(reviewCountMatch[1].replace(/,/g, '')) : 0,
       reviews: reviews,
@@ -109,7 +115,7 @@ export async function scrapeGoogleBusinessSimple(placeId: string): Promise<Googl
     // This is a simpler approach but may have less data
 
     return {
-      name: 'Full House Moving & Junk Removal',
+      name: 'Fullhouse Delivery',
       rating: 4.9,
       totalReviews: 0,
       reviews: [],

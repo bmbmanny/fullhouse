@@ -1,5 +1,5 @@
 export const SITE_CONFIG = {
-  name: "Full House Moving & Junk Removal",
+  name: "Fullhouse Delivery",
   shortName: "Full House",
   description:
     "Professional moving and junk removal services you can trust. We handle residential and commercial moves, furniture disposal, and specialty removals with care.",
